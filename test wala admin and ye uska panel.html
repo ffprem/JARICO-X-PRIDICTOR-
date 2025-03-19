@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <h2>Admin Login</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <select id="role">
+            <option value="admin">Admin</option>
+            <option value="editor">Editor</option>
+            <option value="viewer">Viewer</option>
+        </select>
+        <button onclick="login()">Login</button>
+        <p id="error-message"></p>
+    </div>
+
+    <script>
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var role = document.getElementById("role").value;
+
+            if ((username === "admin" && password === "admin123" && role === "admin") ||
+                (username === "editor" && password === "editor123" && role === "editor") ||
+                (username === "viewer" && password === "viewer123" && role === "viewer")) {
+                
+                localStorage.setItem("userRole", role);
+                window.location.href = "index.html"; // Redirect to Admin Panel
+            } else {
+                document.getElementById("error-message").innerText = "Invalid Login!";
+            }
+        }
+    </script>
+
+    <style>
+        .login-container {
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            text-align: center;
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+
+</body>
+</html>
